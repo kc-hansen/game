@@ -1,0 +1,27 @@
+.App {
+ // background-image: url('./ilike.jpg');
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+
+}
+
+.title { 
+  font-family: 'Cookie', cursive;
+  text-align: center;
+  color: white;
+  font-size: 150px;
+  font-style: italic;
+  margin: auto;
+  padding: 80px 30px;
+  width: 80vw;
+  height: fit-content;
+  border: solid white;
+} //this is the main button to make it sweet

@@ -1,0 +1,176 @@
+
+.game {
+    overflow-x:hidden;
+}
+
+.header {
+    background-color: green;
+    display: flex;
+    height: 67px;
+    width: 100vw;
+
+}
+
+.wrapper {
+    display: grid;
+    
+    height: 100%;
+    width:100%; 
+    grid-gap: 10px;
+    grid-template-columns: 300px auto 300px;
+    
+  }
+  .board {
+   
+    display: grid;
+    height: 70vh;
+    width:100%; 
+    grid-template-columns: repeat(6, auto);
+    grid-template-rows: repeat(6, 75px);
+
+  }
+  .one {
+    grid-column: 1 / 1;
+    grid-row: 1;
+    padding-left: 20px;
+   
+    
+  }
+  .two { 
+    
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-column: 2 / 2;
+    grid-row: 1;
+    margin-top:100px;
+  }
+  .three {
+    grid-column: 3;
+    grid-row: 1 / 1;
+    margin-left: 50px;
+    
+  }
+  .box{
+      background-color: red;
+      border: 3px solid black;
+  }
+  
+  .box1 {
+      grid-column: 1/1;
+      grid-row: 1;
+  }
+  .box2 {
+      grid-column: 2;
+      grid-row: 1;
+  }
+  .box3 {
+    grid-column: 3;
+    grid-row: 1;
+}
+.box4 {
+    grid-column: 4;
+    grid-row: 1;
+}
+.box5 {
+    grid-column: 5;
+    grid-row: 1;
+    background-color: red;
+}
+.box6 {
+    grid-column: 6;
+    grid-row: 1;
+}
+.box7 {
+    grid-column: 6;
+    grid-row: 2;
+}
+.box8 {
+    grid-column: 6;
+    grid-row: 3;
+}
+.box9 {
+    grid-column: 6;
+    grid-row: 4;
+}
+.box10 {
+    grid-column: 6;
+    grid-row: 5;
+}
+.box11 {
+    grid-column: 6;
+    grid-row: 6;
+}
+.box12 {
+    grid-column: 5;
+    grid-row: 6;
+}
+.box13 {
+    grid-column: 4;
+    grid-row: 6;
+}
+.box14 {
+    grid-column: 3;
+    grid-row: 6;
+}
+.box15 {
+    grid-column: 2;
+    grid-row: 6;
+}
+.box16 {
+    grid-column: 1;
+    grid-row: 6;
+}
+.box17 {
+    grid-column: 1;
+    grid-row: 5;
+}
+.box18 {
+    grid-column: 1;
+    grid-row: 4;
+}
+.box19 {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+.box20 {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.box21 {
+    grid-column: 2/6;
+    grid-row: 2/6;
+    background-color: seagreen;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.rollDice {
+    cursor: pointer;
+    background-color: rgb(82, 186, 179);
+    margin-top: 30px;
+    height: 100px; 
+    width: 100px;
+}
+.rocket {
+    
+    height:10px;
+    width: 10px;
+    background-color: green;
+}
+
+.click {
+    
+   margin-top: 30px;
+   margin-left: 15px;
+   cursor: pointer;
+   height: 100px;
+   width: 100px;
+   
+    
+}  
+.delete {
+  
+}

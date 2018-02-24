@@ -1,0 +1,23 @@
+insert into budget
+(user_name_id,
+home_loan_payment,
+rental_loan_payment,
+car_loan_payment,
+land_loan_payment,
+stocks_loan_payment,
+boat_loan_payment,
+recreational_vehicles_loan_payment,
+credit_card_loan_payment,
+student_debt_loan_payment,
+medical_expenses_payment,
+home_car_insurance_payment,
+Utilities_payment,
+cable_payment,
+phone_payment,
+entertainment_payment,
+food_payment,
+clothing_payment,
+internet_payment
+)
+values
+($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19);
