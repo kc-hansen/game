@@ -4,6 +4,7 @@ import './../../../src/main.css';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Header from './../header/header';
 
 
 class Income extends Component {
@@ -41,15 +42,17 @@ incomeNext(){
     render() {
         return (
             <div className='App'>  
+            <Header/>
                 Income Component
-
-                <div>Work Income<input onChange={(e) => { this.setState({workIncome:e.target.value})}}/></div>
-                <div>Rental Income<input onChange={(e) => { this.setState({rentalIncome:e.target.value})}}/></div>
-                <div>Royalty Income<input onChange={(e) => { this.setState({royaltyIncome:e.target.value})}}/></div>
-                <div>Pension Income<input onChange={(e) => { this.setState({pensionIncome:e.target.value})}}/></div>
-                <div>Social Security Income<input onChange={(e) => { this.setState({socialSecurityIncome:e.target.value})}}/></div>
-                <div>Interest Income<input onChange={(e) => { this.setState({interestIncome:e.target.value})}}/></div>
-                <button onClick={this.incomeNext}>Next</button>
+                <div className="input">
+                <div>Work Income   <input onChange={(e) => { this.setState({workIncome:e.target.value})}}/></div>
+                <div>Rental Income   <input onChange={(e) => { this.setState({rentalIncome:e.target.value})}}/></div>
+                <div>Royalty Income   <input onChange={(e) => { this.setState({royaltyIncome:e.target.value})}}/></div>
+                <div>Pension Income   <input onChange={(e) => { this.setState({pensionIncome:e.target.value})}}/></div>
+                <div>Social Security Income   <input onChange={(e) => { this.setState({socialSecurityIncome:e.target.value})}}/></div>
+                <div>Interest Income   <input onChange={(e) => { this.setState({interestIncome:e.target.value})}}/></div>
+                <button className="next" onClick={this.incomeNext}>Next</button>
+                </div>
             </div> 
         )
     }

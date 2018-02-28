@@ -45,6 +45,7 @@ const initialState = {
     clothingPayment: 0,
     internetPayment: 0,
 }
+const ALL_INFO = 'ALL_INFO';
 
 const GET_USER = 'GET_USER';
 const WORK_INCOME = 'WORK_INCOME';
@@ -94,22 +95,171 @@ const INTERNET_PAYMENT = 'INTERNET_PAYMENT';
 
 
 
-//const UPDATE_USERNAME = 'UPDATE_USERNAME';
+export function getUser() {
 
-function reducer(state = initialState, action) {
-        switch (action.type) {
-            case WORK_INCOME:
-                return Object.assign({}, state, { WORK_INCOME: action.payload })
-
-            // case UPDATE_USER_PASSWORD:
-            //     return Object.assign({}, state, { UPDATE_USER_PASSWORD: action.payload })
-
-        }
+    const user = axios.get('/auth/me').then(res => {
+        console.log(res.data)
+        return res.data;
+    })
+    return {
+        type: GET_USER,
+        payload: user
     }
+}
+
+export function allInfo() {
+    return {
+        type: ALL_INFO,
+        payload: axios.get('/geteverything').then(res => {
+            const arr = res.data[0].concat(res.data[1]).concat(res.data[2]).concat(res.data[3])
+            const obj = Object.assign({}, arr[0], arr[1], arr[2], arr[3])
+            return obj;
+            
+        })
+    }
+}
+
+export default function reducer(state = initialState, action) {
+    switch (action.type) {
+        case ALL_INFO + '_FULFILLED':
+        const reduxObj = {
+            workIncome: action.payload.job_income,
+            rentalIncome: action.payload.rental_income,
+            royaltyIncome: action.payload.royalty_income,
+            pensionIncome: action.payload.pension_income,
+            socialSecurityIncome: action.payload.social_security_income,
+            interestIncome: action.payload.interest_income,
+            savingBalance: action.payload.cash,
+            homeValue: action.payload.home,
+            rentalValue: action.payload.rental,
+            carValue: action.payload.car,
+            landValue: action.payload.land,
+            stockValue: action.payload.stocks,
+            boatValue: action.payload.boat,
+            recreationValue: action.payload.recreational_vehicles,
+            homeBalance: action.payload.home_loan,
+            rentalBalance: action.payload.rental_loan,
+            carBalance: action.payload.car_loan,
+            landBalance: action.payload.land_loan,
+            stockBalance: action.payload.stocks_loan,
+            boatBalance: action.payload.boat_loan,
+            recreationalBalance: action.payload.recreational_vehicles_loan,
+            creditCardBalance: action.payload.credit_card_loan,
+            studentBalance: action.payload.student_debt_loan,
+            medicalBalance: action.payload.medical_expenses,
+            homePayment: action.payload.home_loan_payment,
+            rentalPayment: action.payload.rental_loan_payment,
+            carPayment: action.payload.car_loan_payment,
+            landPayment: action.payload.land_loan_payment,
+            stockPayment: action.payload.stocks_loan_payment,
+            boatPayment: action.payload.boat_loan_payment,
+            recreationalPayment: action.payload.recreational_vehicles_loan_payment,
+            creditCardPayment: action.payload.credit_card_loan_payment,
+            studentPayment: action.payload.student_debt_loan_payment,
+            medicalPayment: action.payload.medical_expenses_payment,
+            insurancePayment: action.payload.home_car_insurance_payment,
+            utilitiesPayment: action.payload.utilities_payment,
+            cablePayment: action.payload.cable_payment,
+            phonePayment: action.payload.phone_payment,
+            entertainmentPayment: action.payload.entertainment_payment,
+            foodPayment: action.payload.food_payment,
+            clothingPayment: action.payload.clothing_payment,
+            internetPayment: action.payload.internet_payment
+    }
+        return Object.assign({}, state, reduxObj);
+            
+
+        case GET_USER + '_FULFILLED':
+            return Object.assign({}, state, { user: action.payload });
+        case WORK_INCOME + '_FULFILLED':
+            return Object.assign({}, state, { workIncome: action.payload });
+        case RENTAL_INCOME + '_FULFILLED':
+            return Object.assign({}, state, { rentalIncome: action.payload });
+        case ROYALTY_INCOME + '_FULFILLED':
+            return Object.assign({}, state, { royaltyIncome: action.payload });
+        case INTEREST_INCOME + '_FULFILLED':
+            return Object.assign({}, state, { interestIncome: action.payload });
+        case SAVING_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { savingBalance: action.payload });
+        case HOME_VALUE + '_FULFILLED':
+            return Object.assign({}, state, { homeValue: action.payload });
+        case RENTAL_VALUE + '_FULFILLED':
+            return Object.assign({}, state, { rentalValue: action.payload });
+        case CAR_VALUE + '_FULFILLED':
+            return Object.assign({}, state, { carValue: action.payload });
+        case BOAT_VALUE + '_FULFILLED':
+            return Object.assign({}, state, { boatValue: action.payload });
+        case RECREATION_VALUE + '_FULFILLED':
+            return Object.assign({}, state, { recreationValue: action.payload });
+        case STOCK_VALUE + '_FULFILLED':
+            return Object.assign({}, state, { stockValue: action.payload });
+        case HOME_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { homeBalance: action.payload });
+        case RENTAL_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { rentalBalance: action.payload });
+        case CAR_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { carBalance: action.payload });
+        case LAND_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { landBalance: action.payload });
+        case STOCK_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { stockBalance: action.payload });
+        case BOAT_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { boatBalance: action.payload });
+        case RECREATION_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { recreationalBalance: action.payload });
+        case CREDIT_CARD_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { creditCardBalance: action.payload });
+        case STUDENT_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { studentBalance: action.payload });
+        case MEDICAL_BALANCE + '_FULFILLED':
+            return Object.assign({}, state, { medicalBalance: action.payload });
+        case HOME_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { homePayment: action.payload });
+        case RENTAL_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { rentalPayment: action.payload });
+        case CAR_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { carPayment: action.payload });
+        case LAND_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { landPayment: action.payload });
+        case STOCK_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { stockPayment: action.payload });
+        case BOAT_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { boatPayment: action.payload });
+        case RECREATION_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { recreationalPayment: action.payload });
+        case CREDIT_CARD_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { creditCardPayment: action.payload });
+        case STUDENT_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { studentPayment: action.payload });
+        case MEDICAL_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { medicalPayment: action.payload });
+        case INSURANCE_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { insurancePayment: action.payload });
+        case UTILITIES_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { utilitiesPayment: action.payload });
+        case CABLE_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { cablePayment: action.payload });
+        case PHONE_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { phonePayment: action.payload });
+        case ENTERTAINMENT_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { entertainmentPayment: action.payload });
+        case FOOD_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { foodPayment: action.payload });
+        case CLOTHING_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { clothingPayment: action.payload });
+        case INTERNET_PAYMENT + '_FULFILLED':
+            return Object.assign({}, state, { internetPayment: action.payload });
+
+        default: return state
+
+    }
+}
+
+// case UPDATE_USER_PASSWORD:
+//     return Object.assign({}, state, { UPDATE_USER_PASSWORD: action.payload })
 
 
-
-export function update_workincome(workIncome) {
+export function update_workIncome(workIncome) {
     return {
         type: WORK_INCOME,
         payload: workIncome
@@ -130,19 +280,19 @@ export function update_royaltyIncome(royaltyIncome) {
     }
 }
 
-export function update_pensionIncome(pensionIncome) {
-    return {
-        type: pensionIncome,
-        payload: pensionIncome
-    }
-}
+// export function update_pensionIncome(pensionIncome) {
+//     return {
+//         type: pensionIncome,
+//         payload: pensionIncome
+//     }
+// }
 
-export function update_socialSecurityIncome(socialSecurityIncome) {
-    return {
-        type: SOCIAL_SECURITY_INCOME,
-        payload: socialSecurityIncome
-    }
-}
+// export function update_socialSecurityIncome(socialSecurityIncome) {
+//     return {
+//         type: SOCIAL_SECURITY_INCOME,
+//         payload: socialSecurityIncome
+//     }
+// }
 
 export function update_interestIncome(interestIncome) {
     return {
@@ -321,7 +471,7 @@ export function update_boatPayment(boatPayment) {
 export function update_recreactionalPayment(recreationalPayment) {
     return {
         type: RECREATION_PAYMENT,
-        payload: recreationalPayment
+        payload: recreationalPayment,
     }
 }
 
@@ -335,7 +485,7 @@ export function update_creditCardPayment(creditCardPayment) {
 export function update_studentPayment(studentPayment) {
     return {
         type: STUDENT_PAYMENT,
-        payload: studentPayment
+        payload: studentPayment,
     }
 }
 
@@ -403,25 +553,6 @@ export function update_internetPayment(internetPayment) {
 }
 
 
-export function getUser() {
-
-    const user = axios.get('/auth/me').then(res => {
-        console.log(res.data)
-        return res.data;
-    })
-    return {
-        type: GET_USER,
-        payload: user
-    }
-}
-
-export default function reducer(state = initialState, action) {
-    switch (action.type) {
-        case GET_USER + '_FULFILLED':
-            return Object.assign({}, state, { user: action.payload });
-        default: return state
-    }
-}
 
 
 
@@ -430,5 +561,3 @@ export default function reducer(state = initialState, action) {
 
 
 
-
-// export default reducer;

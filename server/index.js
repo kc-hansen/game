@@ -88,6 +88,26 @@ app.get('/auth/me', (req, res) => {
     }
 })
 
+//need to change the delets to select all from where same format as delete
+//need to find out what data is being pulled
+app.get('/geteverything', (req,res) => {
+    if(!req.user) {
+        res.status(404).send('Not logged in')
+    } else {
+        const db = app.get('db');
+        const stack =[];
+        stack.push(db.get_income([req.user.id]));
+        stack.push(db.get_assets([req.user.id]));
+        stack.push(db.get_liabilities([req.user.id]));
+        stack.push(db.get_budget([req.user.id]));
+       Promise.all(stack).then(resp => {
+            console.log(resp)
+            res.status(200).send(resp)
+        }).catch(console.log)
+    }
+})
+ 
+
 app.post('/insert_income', (req, res) => {
     console.log(req.user)
     if (!req.user) {
@@ -170,18 +190,39 @@ app.post('/insert_assets', (req, res) => {
         })
     }
 })
+
 //delete trial
 app.delete(`/delete`, (req,res)=> {
     if (!req.user){
         res.status(404).send('Not logged in')
     } else {
         const db = app.get('db');
-        db.delete_row_income([req.user.id]), db.delete_row_assets([req.user.id]),
-        db.delete_row_liabilities([req.user.id]), db.delete_row_budget([req.user.id]).then(resp => {
+        const stack =[];
+        stack.push(db.delete_row_income([req.user.id]))
+        stack.push(db.delete_row_assets([req.user.id]))
+        stack.push(db.delete_row_liabilities([req.user.id]))
+        stack.push(db.delete_row_budget([req.user.id]))
+        Promise.all(stack).then(resp => {
             res.status(200).send('pray that this worked')
         })
     }
 })
+
+//cash flow trial
+app.get('/incomereq', (req, res) => {
+    const db = app.get('db');
+    db.total_income([req.user.id]).then(resp => {
+        res.status(200).send(resp)
+    })
+})
+
+app.get('/expensesreq', (req, res) => {
+    const db = app.get('db');
+    db.total_expenses([req.user.id]).then(resp => {
+        res.status(200).send(resp)
+    })
+})
+
 
 app.get('/logout', (req, res) => {
     req.logout();

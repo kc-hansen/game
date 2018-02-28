@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from './../header/header';
+
 
 
 class Assets extends Component {
@@ -42,16 +44,21 @@ class Assets extends Component {
     render() {
         return (
             <div className='App'>
+                <Header />
+
+
                 Assets Component
-                <div>Savings Account Balance <input onChange={(e) => {this.setState({savingBalance:e.target.value})}}></input></div>
-                <div>Home Value <input onChange={(e) => {this.setState({homeValue:e.target.value})}}></input></div>
-                <div>Rental Value <input onChange={(e) => {this.setState({rentalValue:e.target.value})}}></input></div>
-                <div>Car Value <input onChange={(e) => {this.setState({carValue:e.target.value})}}></input></div>
-                <div>Land Value <input onChange={(e) => {this.setState({landValue:e.target.value})}}></input></div>
-                <div>Stocks Value <input onChange={(e) => {this.setState({stockValue:e.target.value})}}></input></div>
-                <div>Boat Value <input onChange= {(e) => {this.setState({boatValue:e.target.value})}}></input></div>
-                <div>Recreation Vehicle Value <input onChange={(e) => {this.setState({recreationValue:e.target.value})}}></input></div>
-                <button onClick={this.assetsNext}>Next</button>
+                <div className="input">
+                    <div>Savings Account Balance <input onChange={(e) => { this.setState({ savingBalance: e.target.value }) }}></input></div>
+                    <div>Home Value <input onChange={(e) => { this.setState({ homeValue: e.target.value }) }}></input></div>
+                    <div>Rental Value <input onChange={(e) => { this.setState({ rentalValue: e.target.value }) }}></input></div>
+                    <div>Car Value <input onChange={(e) => { this.setState({ carValue: e.target.value }) }}></input></div>
+                    <div>Land Value <input onChange={(e) => { this.setState({ landValue: e.target.value }) }}></input></div>
+                    <div>Stocks Value <input onChange={(e) => { this.setState({ stockValue: e.target.value }) }}></input></div>
+                    <div>Boat Value <input onChange={(e) => { this.setState({ boatValue: e.target.value }) }}></input></div>
+                    <div>Recreation Vehicle Value <input onChange={(e) => { this.setState({ recreationValue: e.target.value }) }}></input></div>
+                    <button  className="next" onClick={this.assetsNext}>Next</button>
+                </div>
             </div>
         )
     }

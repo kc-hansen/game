@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Header from './../header/header';
 
 class Liabilities extends Component {
     constructor() {
@@ -35,8 +36,9 @@ class Liabilities extends Component {
             studentBalance,
             medicalBalance,
         } = this.state
-        
-        axios.post('/insert_liabilities', {homeBalance,
+
+        axios.post('/insert_liabilities', {
+            homeBalance,
             rentalBalance,
             carBalance,
             landBalance,
@@ -45,26 +47,32 @@ class Liabilities extends Component {
             recreationalBalance,
             creditCardBalance,
             studentBalance,
-            medicalBalance}).then(response => {
-                this.props.history.push('/budget')
-            })
+            medicalBalance
+        }).then(response => {
+            this.props.history.push('/budget')
+        })
     }
 
     render() {
         return (
+
             <div className='App'>
+                <Header />
+
                 Liabilities Component
-                <div>Home Loan Balance <input onChange={(e) => {this.setState({homeBalance:e.target.value})}}></input></div>
-                <div>Rental Loan Balance <input onChange={(e) => {this.setState({rentalBalance:e.target.value})}}></input></div>
-                <div>Car Loan Balance <input onChange={(e) => {this.setState({carBalance:e.target.value})}}></input></div>
-                <div>Land Loan Balance <input onChange={(e) => {this.setState({landBalance:e.target.value})}}></input></div>
-                <div>Stocks Loan Balance <input onChange={(e) => {this.setState({stockBalance:e.target.value})}}></input></div>
-                <div>Boat Loan Balance <input onChange={(e) => {this.setState({boatBalance:e.target.value})}}></input></div>
-                <div>Recreational Vehicle Balance <input onChange={(e) => {this.setState({recreationalBalance:e.target.value})}}></input></div>
-                <div>Credit Card Balance <input onChange={(e) => {this.setState({creditCardBalance:e.target.value})}}></input></div>
-                <div>Student Debt Balance <input onChange={(e) => {this.setState({studentBalance:e.target.value})}}></input></div>
-                <div>Medical Expense Balance <input onChange={(e) => {this.setState({medicalBalance:e.target.value})}}></input></div>
-                <button onClick={this.liabilitiesNext}>Next</button>
+                <div className="input">
+                    <div>Home Loan Balance <input onChange={(e) => { this.setState({ homeBalance: e.target.value }) }}></input></div>
+                    <div>Rental Loan Balance <input onChange={(e) => { this.setState({ rentalBalance: e.target.value }) }}></input></div>
+                    <div>Car Loan Balance <input onChange={(e) => { this.setState({ carBalance: e.target.value }) }}></input></div>
+                    <div>Land Loan Balance <input onChange={(e) => { this.setState({ landBalance: e.target.value }) }}></input></div>
+                    <div>Stocks Loan Balance <input onChange={(e) => { this.setState({ stockBalance: e.target.value }) }}></input></div>
+                    <div>Boat Loan Balance <input onChange={(e) => { this.setState({ boatBalance: e.target.value }) }}></input></div>
+                    <div>Recreational Vehicle Balance <input onChange={(e) => { this.setState({ recreationalBalance: e.target.value }) }}></input></div>
+                    <div>Credit Card Balance <input onChange={(e) => { this.setState({ creditCardBalance: e.target.value }) }}></input></div>
+                    <div>Student Debt Balance <input onChange={(e) => { this.setState({ studentBalance: e.target.value }) }}></input></div>
+                    <div>Medical Expense Balance <input onChange={(e) => { this.setState({ medicalBalance: e.target.value }) }}></input></div>
+                    <button className="next" onClick={this.liabilitiesNext}>Next</button>
+                </div>
             </div>
         )
     }

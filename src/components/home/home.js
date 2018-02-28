@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 export default class Home extends Component {
     render() {
         return (
-            <div className='App'>  
-                {/* <img src={logo} alt=""/> */}
-                <a href={ process.env.REACT_APP_LOGIN }><button>Login</button></a>
-            </div> 
+            <div className='Apps'>
+                <div className='loginbox'>
+                    <a href={process.env.REACT_APP_LOGIN}><button className='title'>START</button></a>
+                    {/* <a href={process.env.REACT_APP_CONTINUE}><button className='title'>CONTINUE</button></a> */}
+                </div>
+            </div>
         )
     }
 }
