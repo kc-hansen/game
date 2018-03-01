@@ -25,7 +25,7 @@ class Dice extends React.Component {
            
         }
         this.whatIf = this.whatIf.bind(this);
-        this.financialEvent = this.financialEvent.bind(this);
+       // this.financialEvent = this.financialEvent.bind(this);
 //         this.payday = this.payday.bind(this);
         // this.stockInvestment = this.stockInvestment.bind(this);
     }
@@ -69,30 +69,30 @@ class Dice extends React.Component {
         return output;
     }  
 
-    financialEvent() {
-        let { arr1, arr2, arr3, arr4, arr5 } = this.state
-        let output;
-        switch (this.props.position) {
-            case 1: case 6: case 11: case 16:
-                output = arr1[0]
-                break;
-            case 2: case 7: case 12: case 17:
-                output = arr2[0]
-                break;
-            case 3: case 8: case 13: case 18:
-                output = arr3[0]
-                break;
-            case 4: case 9: case 14: case 19:
-                output = arr4[0]
-                break;
-            case 5: case 10: case 15: case 20:
-                output = arr5[0]
-                break;
-            default:
-                break;
-        }
-        return output;
-    }  
+    // financialEvent() {
+    //     let { arr1, arr2, arr3, arr4, arr5 } = this.state
+    //     let output;
+    //     switch (this.props.position) {
+    //         case 1: case 6: case 11: case 16:
+    //             output = arr1[0]
+    //             break;
+    //         case 2: case 7: case 12: case 17:
+    //             output = arr2[0]
+    //             break;
+    //         case 3: case 8: case 13: case 18:
+    //             output = arr3[0]
+    //             break;
+    //         case 4: case 9: case 14: case 19:
+    //             output = arr4[0]
+    //             break;
+    //         case 5: case 10: case 15: case 20:
+    //             output = arr5[0]
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    //     return output;
+    // }  
 
 
 
@@ -165,7 +165,7 @@ class Dice extends React.Component {
                     <div className="modaltitle">Roll Results!</div>
                     <div>You rolled a {roll}</div>
                     <div> {this.whatIf()}</div>
-                    <div>{this.financialEvent()}</div>
+                    {/* <div>{this.financialEvent()}</div> */}
                 
                     <div></div>
 
