@@ -5,6 +5,7 @@ const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const massive = require('massive');
 const bodyParser = require('body-parser')
+const path = require('path');
 
 const {
     SERVER_PORT,
@@ -14,9 +15,13 @@ const {
     CLIENTID,
     CLIENT_SECRET,
     CALLBACK_URL,
+    redirectINCOME,
+    redirectCONTINUE,
+    redirectGAME
 } = process.env
 
 const app = express().use(bodyParser.json());
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(session({
     secret: SESSION_SECRET,
@@ -75,7 +80,12 @@ app.get('/users', (req, res) => {
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/income'
+    successRedirect: redirectINCOME
+}))
+
+app.get('/return', passport.authenticate('auth0'));
+app.get('/return/callback', passport.authenticate('auth0', {
+    successRedirect: redirectGAME
 }))
 
 
@@ -228,6 +238,9 @@ app.get('/logout', (req, res) => {
     req.logout();
 })
 
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(SERVER_PORT, () => {
     console.log(`make this pretty  ${SERVER_PORT}`)
