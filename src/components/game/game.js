@@ -26,6 +26,11 @@ class Game extends Component {
             isOpen3: false,
             isOpen4: false,
             isOpen5: false,
+            tile1: "You Landed on Investment Opportunity!",
+            tile2: "You Landed on a politically correct, yet terrible financial event!",
+            tile3: "You Landed on good financial event!",
+            tile4: "You Landed on Payday!",
+            tile5: "You Landed on a mehhhh financial event!",
         }
 
 
@@ -38,6 +43,7 @@ class Game extends Component {
         this.toggleModal5 = this.toggleModal5.bind(this);
         this.totalIncome = this.totalIncome.bind(this);
         this.totalExpenses = this.totalExpenses.bind(this);
+        this.whatIf = this.whatIf.bind(this);
     }
 
     componentDidMount() {
@@ -45,7 +51,33 @@ class Game extends Component {
         this.props.allInfo();
 
     }
-
+    whatIf() {
+        console.log("what if", this.state.position)
+        let { tile1, tile2, tile3, tile4, tile5 } = this.state
+        console.log("what if", tile1)
+        let output;
+        switch (this.state.position) {
+            case 1: case 6: case 11: case 16:
+                output = tile1
+                break;
+            case 2: case 7: case 12: case 17:
+                output = tile2
+                break;
+            case 3: case 8: case 13: case 18:
+                output = tile3
+                break;
+            case 4: case 9: case 14: case 19:
+                output = tile4
+                break;
+            case 5: case 10: case 15: case 20:
+                output = tile5
+                break;
+            default:
+                output = 'we suck at JS'
+                break;
+        }
+        return output;
+    }   
 
 
     toggleModal1 = () => {
@@ -78,7 +110,7 @@ class Game extends Component {
         this.setState({
             roll: roll,
             position: this.state.position + roll > 20 ? this.state.position + roll - 20 : this.state.position + roll,
-            isOpen5:!this.stateisOpen5
+            isOpen5: !this.stateisOpen5
         })
     }
 
@@ -211,21 +243,19 @@ class Game extends Component {
                     </div>
                     <div className="three">
                         <button onClick={this.roll} className="rollDice">Roll the Dice</button>
-                        {this.state.roll}
                         <div>
                             <div className=''>
                                 <p> Player: {user.user_name ? user.user_name : null}</p>
 
                             </div>
                             <div>
-                            <button className="click" onClick={this.toggleModal5}>
-                            Game Pop Up
+                                <button className="click" onClick={this.toggleModal5}>
+                                    Game Pop Up
                     </button>
-
-                        <Dice show={this.state.isOpen5}
-                            onClose={this.toggleModal5}>
-                        </Dice>
-                    </div>
+                                <Dice whatIf={this.whatIf} roll={this.state.roll} position={this.state.position} show={this.state.isOpen5}
+                                    onClose={this.toggleModal5}>
+                                </Dice>
+                            </div>
                             <div>
                                 {/* <a href='http://localhost:3005/logout'><button className='click'>Logout</button></a> */}
                             </div>

@@ -48,6 +48,7 @@ const initialState = {
 const ALL_INFO = 'ALL_INFO';
 
 const GET_USER = 'GET_USER';
+// const ROLL = 'ROLL';
 const WORK_INCOME = 'WORK_INCOME';
 const RENTAL_INCOME = 'RENTAL_INCOME';
 const ROYALTY_INCOME = 'ROYALTY_INCOME';
@@ -114,7 +115,7 @@ export function allInfo() {
             const arr = res.data[0].concat(res.data[1]).concat(res.data[2]).concat(res.data[3])
             const obj = Object.assign({}, arr[0], arr[1], arr[2], arr[3])
             return obj;
-            
+
         })
     }
 }
@@ -122,55 +123,57 @@ export function allInfo() {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ALL_INFO + '_FULFILLED':
-        const reduxObj = {
-            workIncome: action.payload.job_income,
-            rentalIncome: action.payload.rental_income,
-            royaltyIncome: action.payload.royalty_income,
-            pensionIncome: action.payload.pension_income,
-            socialSecurityIncome: action.payload.social_security_income,
-            interestIncome: action.payload.interest_income,
-            savingBalance: action.payload.cash,
-            homeValue: action.payload.home,
-            rentalValue: action.payload.rental,
-            carValue: action.payload.car,
-            landValue: action.payload.land,
-            stockValue: action.payload.stocks,
-            boatValue: action.payload.boat,
-            recreationValue: action.payload.recreational_vehicles,
-            homeBalance: action.payload.home_loan,
-            rentalBalance: action.payload.rental_loan,
-            carBalance: action.payload.car_loan,
-            landBalance: action.payload.land_loan,
-            stockBalance: action.payload.stocks_loan,
-            boatBalance: action.payload.boat_loan,
-            recreationalBalance: action.payload.recreational_vehicles_loan,
-            creditCardBalance: action.payload.credit_card_loan,
-            studentBalance: action.payload.student_debt_loan,
-            medicalBalance: action.payload.medical_expenses,
-            homePayment: action.payload.home_loan_payment,
-            rentalPayment: action.payload.rental_loan_payment,
-            carPayment: action.payload.car_loan_payment,
-            landPayment: action.payload.land_loan_payment,
-            stockPayment: action.payload.stocks_loan_payment,
-            boatPayment: action.payload.boat_loan_payment,
-            recreationalPayment: action.payload.recreational_vehicles_loan_payment,
-            creditCardPayment: action.payload.credit_card_loan_payment,
-            studentPayment: action.payload.student_debt_loan_payment,
-            medicalPayment: action.payload.medical_expenses_payment,
-            insurancePayment: action.payload.home_car_insurance_payment,
-            utilitiesPayment: action.payload.utilities_payment,
-            cablePayment: action.payload.cable_payment,
-            phonePayment: action.payload.phone_payment,
-            entertainmentPayment: action.payload.entertainment_payment,
-            foodPayment: action.payload.food_payment,
-            clothingPayment: action.payload.clothing_payment,
-            internetPayment: action.payload.internet_payment
-    }
-        return Object.assign({}, state, reduxObj);
-            
+            const reduxObj = {
+                workIncome: action.payload.job_income,
+                rentalIncome: action.payload.rental_income,
+                royaltyIncome: action.payload.royalty_income,
+                pensionIncome: action.payload.pension_income,
+                socialSecurityIncome: action.payload.social_security_income,
+                interestIncome: action.payload.interest_income,
+                savingBalance: action.payload.cash,
+                homeValue: action.payload.home,
+                rentalValue: action.payload.rental,
+                carValue: action.payload.car,
+                landValue: action.payload.land,
+                stockValue: action.payload.stocks,
+                boatValue: action.payload.boat,
+                recreationValue: action.payload.recreational_vehicles,
+                homeBalance: action.payload.home_loan,
+                rentalBalance: action.payload.rental_loan,
+                carBalance: action.payload.car_loan,
+                landBalance: action.payload.land_loan,
+                stockBalance: action.payload.stocks_loan,
+                boatBalance: action.payload.boat_loan,
+                recreationalBalance: action.payload.recreational_vehicles_loan,
+                creditCardBalance: action.payload.credit_card_loan,
+                studentBalance: action.payload.student_debt_loan,
+                medicalBalance: action.payload.medical_expenses,
+                homePayment: action.payload.home_loan_payment,
+                rentalPayment: action.payload.rental_loan_payment,
+                carPayment: action.payload.car_loan_payment,
+                landPayment: action.payload.land_loan_payment,
+                stockPayment: action.payload.stocks_loan_payment,
+                boatPayment: action.payload.boat_loan_payment,
+                recreationalPayment: action.payload.recreational_vehicles_loan_payment,
+                creditCardPayment: action.payload.credit_card_loan_payment,
+                studentPayment: action.payload.student_debt_loan_payment,
+                medicalPayment: action.payload.medical_expenses_payment,
+                insurancePayment: action.payload.home_car_insurance_payment,
+                utilitiesPayment: action.payload.utilities_payment,
+                cablePayment: action.payload.cable_payment,
+                phonePayment: action.payload.phone_payment,
+                entertainmentPayment: action.payload.entertainment_payment,
+                foodPayment: action.payload.food_payment,
+                clothingPayment: action.payload.clothing_payment,
+                internetPayment: action.payload.internet_payment
+            }
+            return Object.assign({}, state, reduxObj);
+
 
         case GET_USER + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload });
+        // case ROLL + '_FULFILLED':
+        //     return Object.assign({}, state, { roll: action.payload })
         case WORK_INCOME + '_FULFILLED':
             return Object.assign({}, state, { workIncome: action.payload });
         case RENTAL_INCOME + '_FULFILLED':
@@ -258,6 +261,12 @@ export default function reducer(state = initialState, action) {
 // case UPDATE_USER_PASSWORD:
 //     return Object.assign({}, state, { UPDATE_USER_PASSWORD: action.payload })
 
+// export function update_roll(roll) {
+//     return {
+//         type:ROLL,
+//         payload: roll
+//     }
+// }
 
 export function update_workIncome(workIncome) {
     return {

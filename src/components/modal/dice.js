@@ -1,9 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getUser, allInfo } from './../../ducks/Reducer';
+import { getUser, allInfo, roll } from './../../ducks/Reducer';
 import { connect } from 'react-redux';
+import game from './../game/game';
 
 class Dice extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            tile1: "You Landed on Investment Opportunity!",
+            tile2: "You Landed on a politically correct, et terrible financial event!",
+            tile3: "You Landed on good financial event!",
+            tile4: "You Landed on Payday!",
+            tile5: "You Landed on a mehhhh financial event!",
+            num:0
+           
+        }
+          
+    }
+
+
     render() {
         let allInfo = this.props.allInfo;
         let user = this.props.user;
@@ -49,11 +65,15 @@ class Dice extends React.Component {
         let foodPayment = this.props.foodPayment
         let clothingPayment = this.props.clothingPayment
         let internetPayment = this.props.internetPayment
+        let roll = this.props.roll
+        let position = this.props.position
+        
+        
+
 
         if (!this.props.show) {
             return null;
         }
-
         return (
             <div className="backdrop" >
                 <div className="modaldice" >
@@ -65,9 +85,11 @@ class Dice extends React.Component {
             </button>
                     </div>
                     <div className="modaltitle">Dice Conditions</div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div>You rolled a {roll}</div>
+                    <div>You landed on {position}</div>
+                    
+                    <div>this is what if {this.props.whatIf()}</div>
+                
                     <div></div>
 
                 </div>
