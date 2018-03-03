@@ -267,7 +267,7 @@ export function update_workIncome(workIncome) {
     return {
         type: WORK_INCOME,
         payload: workIncome
-    }
+    } 
 }
 
 export function update_rentalIncome(rentalIncome) {

@@ -83,9 +83,10 @@ class Dice extends React.Component {
 
         return (<div className='modalfunction'>
             <div>Monthly Pay after Expenses!</div>
-            <div>Your new Cash Balance is ${saving}</div>
-            <div>Your new Property Value is {this.props.homeValue}</div>
-            <div>Your new Stock Value is {this.props.stockValue}</div>
+            <div>You added ${cashFlow} to your Savings </div>
+            <div>account after paying all expenses</div>
+            <div>Your new Property Value is {this.props.homeValue *1.01}</div>
+            <div>Your new Stock Value is {this.props.stockValue *1.03}</div>
         </div>)
 
     }

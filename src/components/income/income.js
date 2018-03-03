@@ -37,7 +37,9 @@ incomeNext(){
         return (
             <div className='AppFirst'>  
             <Header/>
-                <div className="leftPos"><p className="leftinfo">This game requires a lot of financial information to get started. You can enter your actual information or made up information. You will learn the most from entering your actual financial information. Once entered you are able to resume progress at any time. To resume the game, login then click on the can click on "Resume Game" at the top of the page!</p></div>
+                <div className="leftPos"><p className="leftinfo">This game requires a lot of financial information to get started.
+                 You can enter your actual information or made up information. You will learn the most from entering your actual financial 
+                 information. Once entered you are able to resume progress at any time. To resume a prior game, click on<div className="resGame"> "Resume Game"</div> at the top of the page.</p></div>
                 <div className="introTitle">Please enter your income here!</div>
                 <div className="inputFirst">
                 <div>Work Income   <input onChange={(e) => { this.setState({workIncome:e.target.value})}}/></div>
