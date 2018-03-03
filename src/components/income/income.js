@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-//import logo from './../../';
 import './../../../src/main.css';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Header from './../header/header';
 
@@ -36,38 +33,24 @@ incomeNext(){
     })
 }
 
-//function for each of these inputs
-
-
     render() {
         return (
-            <div className='App'>  
+            <div className='AppFirst'>  
             <Header/>
-                Income Component
-                <div className="input">
+                <div className="leftPos"><p className="leftinfo">This game requires a lot of financial information to get started. You can enter your actual information or made up information. You will learn the most from entering your actual financial information. Once entered you are able to resume progress at any time. To resume the game, login then click on the can click on "Resume Game" at the top of the page!</p></div>
+                <div className="introTitle">Please enter your income here!</div>
+                <div className="inputFirst">
                 <div>Work Income   <input onChange={(e) => { this.setState({workIncome:e.target.value})}}/></div>
                 <div>Rental Income   <input onChange={(e) => { this.setState({rentalIncome:e.target.value})}}/></div>
                 <div>Royalty Income   <input onChange={(e) => { this.setState({royaltyIncome:e.target.value})}}/></div>
                 <div>Pension Income   <input onChange={(e) => { this.setState({pensionIncome:e.target.value})}}/></div>
                 <div>Social Security Income   <input onChange={(e) => { this.setState({socialSecurityIncome:e.target.value})}}/></div>
                 <div>Interest Income   <input onChange={(e) => { this.setState({interestIncome:e.target.value})}}/></div>
-                <button className="next" onClick={this.incomeNext}>Next</button>
+                <button className="nextIncome" onClick={this.incomeNext}>Next</button>
                 </div>
             </div> 
         )
     }
 }
-
-function mapStateToProps( state ) {
-    return { 
-        workIncome: state.workIncome,
-        rentalIncome: state.rentalIncome,
-        royaltyIncome: state.royaltyIncome,
-        pensionIncome: state.pensionIncome,
-        socialSecurityIncome: state.socialSecurityIncome,
-        interestIncome: state.interestIncome,
-        
-    };
-  }
   
-  export default connect( mapStateToProps )( Income );
+  export default Income

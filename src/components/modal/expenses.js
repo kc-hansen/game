@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getUser, allInfo } from './../../ducks/Reducer';
 import { connect } from 'react-redux';
 
 class Expenses extends React.Component {
   render() {
-
-    let allInfo = this.props.allInfo;
-    let user = this.props.user;
   
     let homePayment = this.props.homePayment
     let rentalPayment = this.props.rentalPayment
@@ -79,4 +75,4 @@ function mapStateToProps(state) {
     return state
 }
 
-export default connect(mapStateToProps, { getUser, allInfo })(Expenses);
+export default connect(mapStateToProps)(Expenses);

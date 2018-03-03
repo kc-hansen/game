@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { getUser, allInfo } from './../../ducks/Reducer';
 import { connect } from 'react-redux';
 
 class CashFlow extends React.Component {
@@ -17,8 +15,7 @@ class CashFlow extends React.Component {
   }
   render() {
 
-    let allInfo = this.props.allInfo;
-    let user = this.props.user;
+
     let workIncome = this.props.workIncome;
     let rentalIncome = this.props.rentalIncome;
     let royaltyIncome = this.props.royaltyIncome
@@ -98,4 +95,4 @@ function mapStateToProps(state) {
   return state
 }
 
-export default connect(mapStateToProps, { getUser, allInfo })(CashFlow);
+export default connect(mapStateToProps)(CashFlow);

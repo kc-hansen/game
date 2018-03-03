@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './../../';
-//import './Home.css';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from './../header/header';
 
@@ -59,7 +55,7 @@ class Liabilities extends Component {
             <div className='App'>
                 <Header />
 
-                Liabilities Component
+                <div className="introTitle">Please enter your outstanding Loan Balances</div>
                 <div className="input">
                     <div>Home Loan Balance <input onChange={(e) => { this.setState({ homeBalance: e.target.value }) }}></input></div>
                     <div>Rental Loan Balance <input onChange={(e) => { this.setState({ rentalBalance: e.target.value }) }}></input></div>
@@ -78,20 +74,4 @@ class Liabilities extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        homeBalance: state.homeBalance,
-        rentalBalance: state.rentalBalance,
-        carBalance: state.carBalance,
-        landBalance: state.landBalance,
-        stockBalance: state.stockBalance,
-        boatBalance: state.boatBalance,
-        recreationalBalance: state.recreationalBalance,
-        creditCardBalance: state.creditCardBalance,
-        studentBalance: state.studentBalance,
-        medicalBalance: state.medicalBalance,
-
-    };
-}
-
-export default connect(mapStateToProps)(Liabilities);
+export default Liabilities;

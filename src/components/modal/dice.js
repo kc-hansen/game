@@ -1,48 +1,196 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import game from './../game/game';
-import store from './../../store';
-import { getUser, allInfo, update_savingBalance, update_stockValue } from './../../ducks/Reducer';
+import { getUser, allInfo, update_savingBalance, update_cablePayment, update_stockValue, update_homeValue, update_workIncome } from './../../ducks/Reducer';
+
+
+
 
 class Dice extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             tile1: "You Landed on Investment Opportunity!",
             tile2: "You Landed on a politically correct, yet terrible financial event!",
             tile3: "You Landed on good financial event!",
             tile4: "You Landed on Payday!",
             tile5: "You Landed on a mehhhh financial event!",
-            savings: 0,
-            //arr1:[this.stockInvestment(),this.rentalPropertyInvestment()],
-            // arr1:[this.payday()],
-            // arr2:[this.payday()],
-            // arr3:[this.payday()],
-            // arr4:[this.payday()],
-            // arr5:[this.payday()],
-           
-           
+            saving: 0,
+            totalIncome: 0,
+            totalExpenses: 0,
+            cashFlow: 0,
+            propertyValue: 0,
+            stockvalue: 0,
+            output: "",
+            dropDown: 0,
+
+
+        
+
+
         }
         this.whatIf = this.whatIf.bind(this);
-       // this.financialEvent = this.financialEvent.bind(this);
-//         this.payday = this.payday.bind(this);
-        // this.stockInvestment = this.stockInvestment.bind(this);
+        this.financialEvent = this.financialEvent.bind(this);
+        this.payday = this.payday.bind(this);
+        this.water = this.water.bind(this);
+        this.stock = this.stock.bind(this);
+        this.confirm = this.confirm.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.lostJob = this.lostJob.bind(this);
+        this.job = this.job.bind(this);
+        this.comcast = this.comcast.bind(this);
+        this.date = this.date.bind(this);
+        this.bonus = this.bonus.bind(this);
+
     }
 
-// stockInvestment(amount){
-//     const {update_savingBalance, update_stockValue, savingBalance, stockValue} = this.props;
-// <div>How much would you like to Invest into Stock? <input>{amount}</input></div>
-// update_savingBalance(savingBalance - amount); update_stockValue(stockValue + amount) 
-// }
+
+    componentWillReceiveProps(props, oldprops) {
+        this.setState({
+            saving: this.props.savingBalance,
+            cashFlow: (this.props.workIncome + this.props.rentalIncome + this.props.royaltyIncome +
+                this.props.pensionIncome + this.props.socialSecurityIncome + this.props.interestIncome - this.props.homePayment - this.props.rentalPayment - this.props.carPayment
+                - this.props.landPayment - this.props.stockPayment - this.props.boatPayment - this.props.recreationalPayment - this.props.creditCardPayment - this.props.studentPayment
+                - this.props.medicalPayment - this.props.insurancePayment - this.props.utilitiesPayment - this.props.cablePayment - this.props.phonePayment - this.props.entertainmentPayment
+                - this.props.foodPayment - this.props.clothingPayment - this.props.internetPayment),
+            totalIncome: (this.props.workIncome + this.props.rentalIncome + this.props.royaltyIncome +
+                this.props.pensionIncome + this.props.socialSecurityIncome + this.props.interestIncome),
+            totalExpenses: (this.props.homePayment + this.props.rentalPayment + this.props.carPayment
+                + this.props.landPayment + this.props.stockPayment + this.props.boatPayment + this.props.recreationalPayment + this.props.creditCardPayment + this.props.studentPayment
+                + this.props.medicalPayment + this.props.insurancePayment + this.props.utilitiesPayment + this.props.cablePayment + this.props.phonePayment + this.props.entertainmentPayment
+                + this.props.foodPayment + this.props.clothingPayment + this.props.internetPayment),
+
+        })
+    }
+
+    onetime() {
+
+        if (this.props.clicked) {
+            this.financialEvent()
+            this.props.updateClicked()
+        }
+    }
+
+    payday() {
+
+        let cashFlow = this.state.cashFlow;
+        let saving = this.state.saving
+
+        this.props.update_savingBalance(this.props.savingBalance + cashFlow)
+        this.props.update_homeValue(this.props.homeValue * 1.01)
+        this.props.update_stockValue(this.props.stockValue * 1.03)
 
 
-    // payday(){
-              
-    //    this.props.update_savingBalance() 
-    //    return <div>Payday! {this.props.savingBalance}</div>
-    // }
+        return (<div className='modalfunction'>
+            <div>Monthly Pay after Expenses!</div>
+            <div>Your new Cash Balance is ${saving}</div>
+            <div>Your new Property Value is {this.props.homeValue}</div>
+            <div>Your new Stock Value is {this.props.stockValue}</div>
+        </div>)
 
+    }
+
+    water() {
+
+        let saving = this.state.saving
+
+        this.props.update_savingBalance(this.props.savingBalance - 500)
+
+        return (<div className='modalfunction'>
+            <div>Water Heater Exploded!</div>
+            <div></div>
+            <div>Sorry!</div>
+            <div>New Water Heater is $500, cause you dont want a</div>
+            <div>cold shower. Your new Cash Balance is ${saving - 500}</div>
+
+        </div>)
+    }
+
+    lostJob() {
+
+        this.props.update_workIncome(0)
+
+        return (<div className='modalfunction'>
+            <div>Lost your job!</div>
+            <div>Lost all your work Income</div>
+            <div></div>
+            <div>Current Work Income $0</div>
+
+        </div>)
+    }
+
+    bonus(){
+
+        this.props.update_savingBalance(this.props.savingBalance + 2000)
+
+        return (<div className='modalfunction'>
+            <div>Got a bonus for being awesome!</div>
+            <div>$2000 added to your Savings</div>
+        </div>)
+    }
+
+    job() {
+        this.props.update_workIncome(7400)
+
+        return (<div className='modalfunction'>
+            <div>Got a sweet new Web Dev Job!</div>
+            <div>Your new income is $7,400 a Month!</div>
+            <div></div>
+            <div></div>
+        </div>)
+    }
+
+    stock() {
+
+        let saving = this.state.saving
+
+        return (<div className='modalfunction'>
+            <div>Stock Buying Opportunity</div>
+            <div>Your Cash Balance is ${saving}</div>
+            <div>Current Stock Value is {this.props.stockValue}</div>
+            <div>How much stock would you like to buy?  <select onChange={(e) => { this.handleChange(e.target.value) }}>
+                <option value="0">0</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+                <option value="10000">10000</option>
+            </select>
+                <button onClick={this.confirm}>Submit</button> </div>
+        </div>)
+    }
+
+    date() {
+        this.props.update_savingBalance(this.props.savingBalance - 100)
+
+        return (<div className='modalfunction'>
+            <div >You went on a fancy date!</div>
+            <div>It was fun and only cost you $100!</div>
+        </div>)
+    }
+
+    comcast() {
+
+        this.props.update_cablePayment(0)
+
+        return (<div className='modalfunction'>
+            <div>You just had another wonderful experience</div>
+            <div>with Comcast. Based on that </div>
+            <div>experience you decided to</div>
+            <div>cancel your cable subscription. </div>
+            <div>Cable Payment is reduced to 0</div>
+        </div>)
+    }
+
+    confirm() {
+
+        this.props.update_stockValue(this.props.stockValue + Number(this.state.dropDown))
+        this.props.update_savingBalance(this.props.savingBalance - Number(this.state.dropDown))
+        alert(`You successfully purchased $${this.state.dropDown} worth of Stock!`)
+    }
+    handleChange(value) {
+
+        this.setState({ dropDown: value })
+
+    }
 
     whatIf() {
         let { tile1, tile2, tile3, tile4, tile5 } = this.state
@@ -67,88 +215,44 @@ class Dice extends React.Component {
                 break;
         }
         return output;
-    }  
+    }
 
-    // financialEvent() {
-    //     let { arr1, arr2, arr3, arr4, arr5 } = this.state
-    //     let output;
-    //     switch (this.props.position) {
-    //         case 1: case 6: case 11: case 16:
-    //             output = arr1[0]
-    //             break;
-    //         case 2: case 7: case 12: case 17:
-    //             output = arr2[0]
-    //             break;
-    //         case 3: case 8: case 13: case 18:
-    //             output = arr3[0]
-    //             break;
-    //         case 4: case 9: case 14: case 19:
-    //             output = arr4[0]
-    //             break;
-    //         case 5: case 10: case 15: case 20:
-    //             output = arr5[0]
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    //     return output;
-    // }  
+    financialEvent() {
+        let output = output;
+        let random = Math.floor(Math.random() * 2) + 1
+        switch (this.props.position) {
+            case 1: case 6: case 11: case 16:
+                if (random === 1) { output = this.stock() }
+                else { output = this.stock() }
+                break;
+            case 2: case 7: case 12: case 17:
+                if (random === 1) { output = this.lostJob() }
+                else { output = this.water() }
+                break;
+            case 3: case 8: case 13: case 18:
+                if (random === 1) { output = this.bonus() }
+                else { output = this.job() }
+                break;
+            case 4: case 9: case 14: case 19:
+                if (random === 1) { output = this.payday() }
+                else { output = this.payday() }
+                break;
+            case 5: case 10: case 15: case 20:
+                if (random === 1) { output = this.date() }
+                else { output = this.comcast() }
+                break;
+            default:
+                break;
+        } this.setState({ output: output })
+        return output;
+    }
 
 
 
     render() {
-        let allInfo = this.props.allInfo;
-        let user = this.props.user;
-        let workIncome = this.props.workIncome;
-        let rentalIncome = this.props.rentalIncome;
-        let royaltyIncome = this.props.royaltyIncome
-        let pensionIncome = this.props.pensionIncome
-        let socialSecurityIncome = this.props.socialSecurityIncome
-        let interestIncome = this.props.interestIncome
-        let savingBalance = this.props.savingBalance
-        let homeValue = this.props.homeValue
-        let rentalValue = this.props.rentalValue
-        let carValue = this.props.carValue
-        let landValue = this.props.landValue
-        let stockValue = this.props.stockValue
-        let boatValue = this.props.boatValue
-        let recreationValue = this.props.recreationValue
-        let homeBalance = this.props.homeBalance
-        let rentalBalance = this.props.rentalBalance
-        let carBalance = this.props.carBalance
-        let landBalance = this.props.landBalance
-        let stockBalance = this.props.stockBalance
-        let boatBalance = this.props.boatBalance
-        let recreationalBalance = this.props.recreationalBalance
-        let creditCardBalance = this.props.creditCardBalance
-        let studentBalance = this.props.studentBalance
-        let medicalBalance = this.props.medicalBalance
-        let homePayment = this.props.homePayment
-        let rentalPayment = this.props.rentalPayment
-        let carPayment = this.props.carPayment
-        let landPayment = this.props.landPayment
-        let stockPayment = this.props.stockPayment
-        let boatPayment = this.props.boatPayment
-        let recreationalPayment = this.props.recreationalPayment
-        let creditCardPayment = this.props.creditCardPayment
-        let studentPayment = this.props.studentPayment
-        let medicalPayment = this.props.medicalPayment
-        let insurancePayment = this.props.insurancePayment
-        let utilitiesPayment = this.props.utilitiesPayment
-        let cablePayment = this.props.cablePayment
-        let phonePayment = this.props.phonePayment
-        let entertainmentPayment = this.props.entertainmentPayment
-        let foodPayment = this.props.foodPayment
-        let clothingPayment = this.props.clothingPayment
-        let internetPayment = this.props.internetPayment
+        this.onetime()
         let roll = this.props.roll
-        let position = this.props.position;
-        let savings = (this.props.savingBalance + this.props.workIncome + this.props.rentalIncome + this.props.royaltyIncome +
-        this.props.pensionIncome + this.props.socialSecurityIncome + this.props.interestIncome - this.props.homePayment - this.props.rentalPayment - this.props.carPayment - this.props.landPayment - this.props.stockPayment -
-        this.props.boatPayment - this.props.recreationalPayment - this.props.creditCardPayment - this.props.studentPayment - this.props.medicalPayment - this.props.insurancePayment - this.props.utilitiesPayment - 
-        this.props.cablePayment - this.props.phonePayment - this.props.entertainmentPayment - this.props.foodPayment - this.props.clothingPayment - this.props.internetPayment )
-
-
+        
         if (!this.props.show) {
             return null;
         }
@@ -165,8 +269,8 @@ class Dice extends React.Component {
                     <div className="modaltitle">Roll Results!</div>
                     <div>You rolled a {roll}</div>
                     <div> {this.whatIf()}</div>
-                    {/* <div>{this.financialEvent()}</div> */}
-                
+                    <div>{this.state.output}</div>
+
                     <div></div>
 
                 </div>
@@ -182,8 +286,9 @@ Dice.propTypes = {
 };
 
 function mapStateToProps(state) {
+    console.log('map to state', state.savingBalance, state.homeValue, state.stockValue)
     return state
-    
+
 }
 
-export default connect(mapStateToProps, { getUser, allInfo, update_savingBalance, update_stockValue })(Dice);
+export default connect(mapStateToProps, { update_cablePayment, getUser, allInfo, update_savingBalance, update_stockValue, update_homeValue, update_workIncome })(Dice);

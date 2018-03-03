@@ -52,8 +52,6 @@ const GET_USER = 'GET_USER';
 const WORK_INCOME = 'WORK_INCOME';
 const RENTAL_INCOME = 'RENTAL_INCOME';
 const ROYALTY_INCOME = 'ROYALTY_INCOME';
-const PENSION_INCOME = 'PENSION_INCOME';
-const SOCIAL_SECURITY_INCOME = 'SOCIAL_SECURITY_INCOME';
 const INTEREST_INCOME = 'INTEREST_INCOME';
 const SAVING_BALANCE = 'SAVING_BALANCE';
 const HOME_VALUE = 'HOME_VALUE';
@@ -99,7 +97,6 @@ const INTERNET_PAYMENT = 'INTERNET_PAYMENT';
 export function getUser() {
 
     const user = axios.get('/auth/me').then(res => {
-        console.log(res.data)
         return res.data;
     })
     return {
@@ -172,9 +169,7 @@ export default function reducer(state = initialState, action) {
 
         case GET_USER + '_FULFILLED':
             return Object.assign({}, state, { user: action.payload });
-        // case ROLL + '_FULFILLED':
-        //     return Object.assign({}, state, { roll: action.payload })
-        case WORK_INCOME + '_FULFILLED':
+        case WORK_INCOME :
             return Object.assign({}, state, { workIncome: action.payload });
         case RENTAL_INCOME + '_FULFILLED':
             return Object.assign({}, state, { rentalIncome: action.payload });
@@ -182,9 +177,9 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { royaltyIncome: action.payload });
         case INTEREST_INCOME + '_FULFILLED':
             return Object.assign({}, state, { interestIncome: action.payload });
-        case SAVING_BALANCE + '_FULFILLED':
+        case SAVING_BALANCE:
             return Object.assign({}, state, { savingBalance: action.payload });
-        case HOME_VALUE + '_FULFILLED':
+        case HOME_VALUE :
             return Object.assign({}, state, { homeValue: action.payload });
         case RENTAL_VALUE + '_FULFILLED':
             return Object.assign({}, state, { rentalValue: action.payload });
@@ -194,7 +189,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { boatValue: action.payload });
         case RECREATION_VALUE + '_FULFILLED':
             return Object.assign({}, state, { recreationValue: action.payload });
-        case STOCK_VALUE + '_FULFILLED':
+        case STOCK_VALUE :
             return Object.assign({}, state, { stockValue: action.payload });
         case HOME_BALANCE + '_FULFILLED':
             return Object.assign({}, state, { homeBalance: action.payload });
@@ -240,7 +235,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { insurancePayment: action.payload });
         case UTILITIES_PAYMENT + '_FULFILLED':
             return Object.assign({}, state, { utilitiesPayment: action.payload });
-        case CABLE_PAYMENT + '_FULFILLED':
+        case CABLE_PAYMENT :
             return Object.assign({}, state, { cablePayment: action.payload });
         case PHONE_PAYMENT + '_FULFILLED':
             return Object.assign({}, state, { phonePayment: action.payload });
@@ -289,20 +284,6 @@ export function update_royaltyIncome(royaltyIncome) {
     }
 }
 
-// export function update_pensionIncome(pensionIncome) {
-//     return {
-//         type: pensionIncome,
-//         payload: pensionIncome
-//     }
-// }
-
-// export function update_socialSecurityIncome(socialSecurityIncome) {
-//     return {
-//         type: SOCIAL_SECURITY_INCOME,
-//         payload: socialSecurityIncome
-//     }
-// }
-
 export function update_interestIncome(interestIncome) {
     return {
         type: INTEREST_INCOME,
@@ -316,7 +297,7 @@ export function update_savingBalance(savingBalance) {
     }
 }
 
-export function update_homeValue(homeValue) {
+export function update_homeValue(homeValue) { 
     return {
         type: HOME_VALUE,
         payload: homeValue

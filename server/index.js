@@ -17,7 +17,7 @@ const {
     CALLBACK_URL,
     redirectINCOME,
     redirectCONTINUE,
-    redirectGAME
+    GAME
 } = process.env
 
 const app = express().use(bodyParser.json());
@@ -78,14 +78,11 @@ app.get('/users', (req, res) => {
     })
 })
 
+
+var x = 'http://localhost:3000/game'
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
     successRedirect: redirectINCOME
-}))
-
-app.get('/return', passport.authenticate('auth0'));
-app.get('/return/callback', passport.authenticate('auth0', {
-    successRedirect: redirectGAME
 }))
 
 

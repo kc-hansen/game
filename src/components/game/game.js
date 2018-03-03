@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './../../';
 import './../../_game.scss';
 import { getUser, allInfo } from './../../ducks/Reducer';
 import { connect } from 'react-redux';
@@ -26,9 +25,8 @@ class Game extends Component {
             isOpen3: false,
             isOpen4: false,
             isOpen5: false,
-
+            clicked: false,
         }
-
 
         this.roll = this.roll.bind(this);
         this.delete = this.delete.bind(this);
@@ -37,8 +35,7 @@ class Game extends Component {
         this.toggleModal3 = this.toggleModal3.bind(this);
         this.toggleModal4 = this.toggleModal4.bind(this);
         this.toggleModal5 = this.toggleModal5.bind(this);
-        this.totalIncome = this.totalIncome.bind(this);
-        this.totalExpenses = this.totalExpenses.bind(this);
+        this.updateClicked = this.updateClicked.bind(this);
     }
 
     componentDidMount() {
@@ -77,8 +74,10 @@ class Game extends Component {
         this.setState({
             roll: roll,
             position: this.state.position + roll > 20 ? this.state.position + roll - 20 : this.state.position + roll,
-            isOpen5: !this.stateisOpen5
+            isOpen5: !this.stateisOpen5,
+            clicked: !this.state.clicked
         })
+        
     }
 
     delete() {
@@ -86,71 +85,15 @@ class Game extends Component {
             this.props.history.push('/')
         })
     }
-    totalIncome() {
 
-        axios.get('/incomereq').then(response => {
-            console.log(response.data);
-            return response.data
-
-        })
-    }
-    totalExpenses() {
-        axios.get('/expensesreq').then(response => {
-            console.log(response.data);
-            return response.data
-
-        })
-    }
-
+updateClicked(){
+    this.setState({
+        clicked:false
+    })
+}
     render() {
-        console.log("STATE", this.state)
 
-        let allInfo = this.props.allInfo;
         let user = this.props.user;
-        let workIncome = this.props.workIncome;
-        let rentalIncome = this.props.rentalIncome;
-        let royaltyIncome = this.props.royaltyIncome
-        let pensionIncome = this.props.pensionIncome
-        let socialSecurityIncome = this.props.socialSecurityIncome
-        let interestIncome = this.props.interestIncome
-        let savingBalance = this.props.savingBalance
-        let homeValue = this.props.homeValue
-        let rentalValue = this.props.rentalValue
-        let carValue = this.props.carValue
-        let landValue = this.props.landValue
-        let stockValue = this.props.stockValue
-        let boatValue = this.props.boatValue
-        let recreationValue = this.props.recreationValue
-        let homeBalance = this.props.homeBalance
-        let rentalBalance = this.props.rentalBalance
-        let carBalance = this.props.carBalance
-        let landBalance = this.props.landBalance
-        let stockBalance = this.props.stockBalance
-        let boatBalance = this.props.boatBalance
-        let recreationalBalance = this.props.recreationalBalance
-        let creditCardBalance = this.props.creditCardBalance
-        let studentBalance = this.props.studentBalance
-        let medicalBalance = this.props.medicalBalance
-        let homePayment = this.props.homePayment
-        let rentalPayment = this.props.rentalPayment
-        let carPayment = this.props.carPayment
-        let landPayment = this.props.landPayment
-        let stockPayment = this.props.stockPayment
-        let boatPayment = this.props.boatPayment
-        let recreationalPayment = this.props.recreationalPayment
-        let creditCardPayment = this.props.creditCardPayment
-        let studentPayment = this.props.studentPayment
-        let medicalPayment = this.props.medicalPayment
-        let insurancePayment = this.props.insurancePayment
-        let utilitiesPayment = this.props.utilitiesPayment
-        let cablePayment = this.props.cablePayment
-        let phonePayment = this.props.phonePayment
-        let entertainmentPayment = this.props.entertainmentPayment
-        let foodPayment = this.props.foodPayment
-        let clothingPayment = this.props.clothingPayment
-        let internetPayment = this.props.internetPayment
-        console.log('user', user)
-        // console.log('allInfo', allInfo)
         let squares = Array(20).fill('').map((v, i) => {
             return (
                 <div className={`box ${'box' + (i + 1)}`} key={i}>
@@ -204,22 +147,23 @@ class Game extends Component {
                             {squares}
                             <div className="box box21"></div>
                         </div>
-                        <p>Warning! Clicking "Restart" will delete ALL saved information and kick you back to the start of the game.</p>
+                        <div className="warningBox">
+                        <p className="warning">Warning! Clicking "Restart" will delete ALL saved information and kick you back to the start of the game.</p>
                         <div className="delete"><button className='click' onClick={this.delete}>Restart</button></div>
-
+                        </div>
                     </div>
                     <div className="three">
                         <button onClick={this.roll} className="rollDice">Roll the Dice</button>
                         <div>
-                            <div className=''>
+                            <div className="name">
                                 <p> Player: {user.user_name ? user.user_name : null}</p>
 
                             </div>
                             <div>
                                 <button className="click" onClick={this.toggleModal5}>
-                                    Game Pop Up
+                                    Game Event
                                  </button>
-                                <Dice roll={this.state.roll} position={this.state.position} show={this.state.isOpen5}
+                                <Dice updateClicked={this.updateClicked} clicked={this.state.clicked} roll={this.state.roll} position={this.state.position} show={this.state.isOpen5}
                                     onClose={this.toggleModal5}>
                                 </Dice>
                             </div>

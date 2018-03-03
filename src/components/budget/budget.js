@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './../../';
-//import './Home.css';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from './../header/header';
 
@@ -79,7 +75,8 @@ class Budget extends Component {
         return (
             <div className='App'>
                 <Header />
-                Budget Component
+                
+                <div className="introTitle">Please enter your monthly Budget information</div>
                 <div className="input">
                     <div>Home Loan Payment <input onChange={(e) => { this.setState({ homePayment: e.target.value }) }}></input></div>
                     <div>Rental Loan Payment <input onChange={(e) => { this.setState({ rentalPayment: e.target.value }) }}></input></div>
@@ -106,28 +103,4 @@ class Budget extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        homePayment: state.homePayment,
-        rentalPayment: state.rentalPayment,
-        carPayment: state.carPayment,
-        landPayment: state.landPayment,
-        stockPayment: state.stockPayment,
-        boatPayment: state.boatPayment,
-        recreationalPayment: state.recreationalPayment,
-        creditCardPayment: state.creditCardPayment,
-        studentPayment: state.studentPayment,
-        medicalPayment: state.medicalPayment,
-        insurancePayment: state.insurancePayment,
-        utilitiesPayment: state.utilitiesPayment,
-        cablePayment: state.cablePayment,
-        phonePayment: state.phonePayment,
-        entertainmentPayment: state.entertainmentPayment,
-        foodPayment: state.foodPayment,
-        clothingPayment: state.clothingPayment,
-        internetPayment: state.internetPayment,
-
-    };
-}
-
-export default connect(mapStateToProps)(Budget);
+ export default Budget;

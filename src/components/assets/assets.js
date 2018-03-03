@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './../../';
-//import './Home.css';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Header from './../header/header';
 
@@ -45,9 +41,8 @@ class Assets extends Component {
         return (
             <div className='App'>
                 <Header />
-
-
-                Assets Component
+                
+                <div className="introTitle">Please enter your Assets Value's</div>
                 <div className="input">
                     <div>Savings Account Balance <input onChange={(e) => { this.setState({ savingBalance: e.target.value }) }}></input></div>
                     <div>Home Value <input onChange={(e) => { this.setState({ homeValue: e.target.value }) }}></input></div>
@@ -63,18 +58,5 @@ class Assets extends Component {
         )
     }
 }
-function mapStateToProps(state) {
-    return {
-        savingBalance: state.savingBalance,
-        homeValue: state.homeValue,
-        rentalValue: state.rentalValue,
-        carValue: state.carValue,
-        landValue: state.landValue,
-        stockValue: state.stockValue,
-        boatValue: state.boatValue,
-        recreationValue: state.recreationValue,
 
-    };
-}
-
-export default connect(mapStateToProps)(Assets);
+export default Assets

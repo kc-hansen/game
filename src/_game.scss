@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:600');
 
 .game {
     overflow-x:hidden;
@@ -166,8 +167,8 @@
     grid-row: 2/6;
     background-image: url(./game-background.png);
     background-size: cover;
-     background-position: center;
-     background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .rollDice {
     cursor: pointer;
@@ -175,15 +176,25 @@
     margin-top: 30px;
     height: 100px; 
     width: 100px;
+    margin-left: 15px;
 }
 .rocket {
     
-    height:40px;
-    width: 40px;
-    
-    
-   
+    height:60px;
+    width: 60px;
+ }
+.warningBox {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 675px;
 }
+ .warning {
+     font-size: 30px;
+     color:#c1292e;
+     text-align: center;
+    }
 
 .click {
     
@@ -192,9 +203,15 @@
    cursor: pointer;
    height: 100px;
    width: 100px;
-   
-    
 }  
 .delete {
   padding-bottom: 25px;
+}
+
+.name {
+    padding-left:6px;
+    padding-top:30px;
+    font-size: 24px;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    color: #fdfffc;
 }

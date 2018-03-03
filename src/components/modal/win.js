@@ -5,22 +5,8 @@ import { connect } from 'react-redux';
 
 class Win extends React.Component {
   render() {
-    let allInfo = this.props.allInfo;
-    let user = this.props.user;
-    let workIncome = this.props.workIncome;
-    let rentalIncome = this.props.rentalIncome;
-    let royaltyIncome = this.props.royaltyIncome
-    let pensionIncome = this.props.pensionIncome
-    let socialSecurityIncome = this.props.socialSecurityIncome
-    let interestIncome = this.props.interestIncome
+
     let savingBalance = this.props.savingBalance
-    let homeValue = this.props.homeValue
-    let rentalValue = this.props.rentalValue
-    let carValue = this.props.carValue
-    let landValue = this.props.landValue
-    let stockValue = this.props.stockValue
-    let boatValue = this.props.boatValue
-    let recreationValue = this.props.recreationValue
     let homeBalance = this.props.homeBalance
     let rentalBalance = this.props.rentalBalance
     let carBalance = this.props.carBalance
@@ -49,6 +35,10 @@ class Win extends React.Component {
     let foodPayment = this.props.foodPayment
     let clothingPayment = this.props.clothingPayment
     let internetPayment = this.props.internetPayment
+    let allExpenses = (homePayment + rentalPayment + carPayment + landPayment +
+      stockPayment + boatPayment + recreationalPayment + creditCardPayment + studentPayment +
+      medicalPayment + insurancePayment + utilitiesPayment + cablePayment + phonePayment 
+      + entertainmentPayment + foodPayment + clothingPayment + internetPayment)
    
     if(!this.props.show) {
       return null;
@@ -65,10 +55,11 @@ class Win extends React.Component {
             </button>
             </div>
             <div className="modaltitle">Win Conditions</div>
-            <div>save 20x current savingBalance</div>
-            <div>eliminate all debt</div>
-            <div>cut expenses in half</div>
-            <div>10 rental properties</div>
+            <div>Save ${savingBalance * 50 } into Stock</div>
+            <div>Eliminate all Debt ${homeBalance + rentalBalance + carBalance + landBalance + stockBalance + boatBalance +
+                    recreationalBalance + creditCardBalance + studentBalance + medicalBalance}</div>
+            <div>Reduce total monthly Expenses ${allExpenses} to ${allExpenses / 2}</div>
+            <div>Acquire 10 rental properties</div>
           
         </div>
       </div>
