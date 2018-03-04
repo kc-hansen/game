@@ -94,7 +94,7 @@ app.get('/auth/me', (req, res) => {
     }
 })
 
-app.get('/game', (req, res) => {
+app.get('/resume', (req, res) => {
     if (!req.user) {
         res.status(404).send('Not logged in')
     } else {
