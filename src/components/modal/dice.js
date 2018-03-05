@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getUser, allInfo, update_savingBalance, update_cablePayment, update_stockValue, update_homeValue, update_workIncome } from './../../ducks/Reducer';
+import { getUser, allInfo, update_savingBalance, update_creditCardPayment, update_creditCardBalance, update_cablePayment, update_stockValue, update_homeValue, update_workIncome } from './../../ducks/Reducer';
 
 
 
@@ -23,6 +23,7 @@ class Dice extends React.Component {
             stockvalue: 0,
             output: "",
             dropDown: 0,
+            CCBalance: 0,
 
 
         
@@ -41,6 +42,9 @@ class Dice extends React.Component {
         this.comcast = this.comcast.bind(this);
         this.date = this.date.bind(this);
         this.bonus = this.bonus.bind(this);
+        // this.debtPay = this.debtPay.bind(this);
+        // this.confirmPay = this.confirmPay.bind(this);
+        // this.adjustPayment = this.adjustPayment.bind(this);
 
     }
 
@@ -59,6 +63,7 @@ class Dice extends React.Component {
                 + this.props.landPayment + this.props.stockPayment + this.props.boatPayment + this.props.recreationalPayment + this.props.creditCardPayment + this.props.studentPayment
                 + this.props.medicalPayment + this.props.insurancePayment + this.props.utilitiesPayment + this.props.cablePayment + this.props.phonePayment + this.props.entertainmentPayment
                 + this.props.foodPayment + this.props.clothingPayment + this.props.internetPayment),
+            creditCardBalance:this.props.creditCardBalance    
 
         })
     }
@@ -193,6 +198,44 @@ class Dice extends React.Component {
 
     }
 
+//     debtPay(){
+
+//         let saving = this.state.saving
+
+//         return (<div className='modalfunction'>
+//         <div>Debt Paydown Opportunity</div>
+//         <div>Your Cash Balance is ${saving}</div>
+//         <div>Current Stock Value is {this.props.stockValue}</div>
+//         <div>Current Credit Card Balance {this.props.creditCardBalance}</div>
+//         <div>How much Credit card debt would you like to pay off?<select onChange={(e) => { this.handleChange(e.target.value) }}>
+//             <option value="0">0</option>
+//             <option value="500">500</option>
+//             <option value="1000">1000</option>
+//             <option value="10000">10000</option>
+//         </select>
+//             <button onClick={this.confirmPay}>Submit</button> </div>
+//     </div>)
+//  }
+
+// confirmPay() {
+    
+//     this.props.update_creditCardBalance(this.props.creditCardBalance - Number(this.state.dropDown))
+//     this.props.update_savingBalance(this.props.savingBalance - Number(this.state.dropDown))
+//     alert(`You successfully payed down $${this.state.dropDown} worth of Credit card Debt!`)
+//     this.adjustPayment()
+// }
+ 
+// adjustPayment(){
+
+//     if(this.props.creditCardBalance === true) {
+//         console.log('this is the credit card payment', this.props.creditCardBalance)
+//         this.props.update_creditCardPayment(this.props.creditCardBalance *.035)
+//     } else if (this.props.creditCardBalance === false) {
+//         this.props.update_creditCardPayment(0)
+//     }
+// }
+   
+    
     whatIf() {
         let { tile1, tile2, tile3, tile4, tile5 } = this.state
         let output;
@@ -227,8 +270,8 @@ class Dice extends React.Component {
                 else { output = this.stock() }
                 break;
             case 2: case 7: case 12: case 17:
-                if (random === 1) { output = this.lostJob() }
-                else { output = this.water() }
+                if (random === 1) { output = this.water() }
+                else { output = this.lostJob() }
                 break;
             case 3: case 8: case 13: case 18:
                 if (random === 1) { output = this.bonus() }
@@ -239,8 +282,8 @@ class Dice extends React.Component {
                 else { output = this.payday() }
                 break;
             case 5: case 10: case 15: case 20:
-                if (random === 1) { output = this.date() }
-                else { output = this.comcast() }
+                if (random === 1) { output = this.comcast() }
+                else { output = this.date() }
                 break;
             default:
                 break;
@@ -292,4 +335,4 @@ function mapStateToProps(state) {
 
 }
 
-export default connect(mapStateToProps, { update_cablePayment, getUser, allInfo, update_savingBalance, update_stockValue, update_homeValue, update_workIncome })(Dice);
+export default connect(mapStateToProps, { update_creditCardPayment, update_creditCardBalance, update_cablePayment, getUser, allInfo, update_savingBalance, update_stockValue, update_homeValue, update_workIncome })(Dice);

@@ -48,7 +48,6 @@ const initialState = {
 const ALL_INFO = 'ALL_INFO';
 
 const GET_USER = 'GET_USER';
-// const ROLL = 'ROLL';
 const WORK_INCOME = 'WORK_INCOME';
 const RENTAL_INCOME = 'RENTAL_INCOME';
 const ROYALTY_INCOME = 'ROYALTY_INCOME';
@@ -205,7 +204,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { boatBalance: action.payload });
         case RECREATION_BALANCE + '_FULFILLED':
             return Object.assign({}, state, { recreationalBalance: action.payload });
-        case CREDIT_CARD_BALANCE + '_FULFILLED':
+        case CREDIT_CARD_BALANCE:
             return Object.assign({}, state, { creditCardBalance: action.payload });
         case STUDENT_BALANCE + '_FULFILLED':
             return Object.assign({}, state, { studentBalance: action.payload });
@@ -213,7 +212,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { medicalBalance: action.payload });
         case HOME_PAYMENT + '_FULFILLED':
             return Object.assign({}, state, { homePayment: action.payload });
-        case RENTAL_PAYMENT + '_FULFILLED':
+        case RENTAL_PAYMENT :
             return Object.assign({}, state, { rentalPayment: action.payload });
         case CAR_PAYMENT + '_FULFILLED':
             return Object.assign({}, state, { carPayment: action.payload });

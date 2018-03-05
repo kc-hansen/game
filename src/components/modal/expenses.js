@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class Expenses extends React.Component {
   render() {
-  
+
     let homePayment = this.props.homePayment
     let rentalPayment = this.props.rentalPayment
     let carPayment = this.props.carPayment
@@ -24,7 +24,7 @@ class Expenses extends React.Component {
     let clothingPayment = this.props.clothingPayment
     let internetPayment = this.props.internetPayment
 
-    if(!this.props.show) {
+    if (!this.props.show) {
       return null;
     }
 
@@ -40,25 +40,110 @@ class Expenses extends React.Component {
             </button>
           </div>
           <div className="modaltitle">Monthly Expenses</div>
-        <div>Home Payment  ${homePayment}</div>
-        <div>Rental Property Payment  ${rentalPayment}</div>
-        <div>Car Loan Payment  ${carPayment}</div>
-        <div>Land Loan Payment  ${landPayment}</div>
-        <div>Stock Loan Payment  ${stockPayment}</div>
-        <div>Boat Loan Payment  ${boatPayment}</div>
-        <div>Recreational Loan Payment  ${recreationalPayment}</div>
-        <div>Credit Card Payment  ${creditCardPayment}</div>
-        <div>Student Loan Payment  ${studentPayment}</div>
-        <div>Medical Bills Payment  ${medicalPayment}</div>
-        <div>Home and Auto Insurance Payment  ${insurancePayment}</div>
-        <div>Utility Bill Payment  ${utilitiesPayment}</div>
-        <div>Cable Bill Payment  ${cablePayment}</div>
-        <div>Phone Bill Payment  ${phonePayment}</div>
-        <div>Entertainment Expenses ${entertainmentPayment}</div>
-        <div>Foood Expenses ${foodPayment}</div>
-        <div>Clothing Expenses ${clothingPayment}</div>
-        <div>Internet Bill Payment  ${internetPayment}</div>
-        
+          {homePayment ?
+
+            <div>Home Payment  ${homePayment}</div>
+            :
+            null
+          }
+          {rentalPayment ?
+
+            <div>Rental Property Payment  ${rentalPayment}</div>
+            :
+            null
+          }
+          {landPayment ?
+
+            <div>Land Loan Payment  ${landPayment}</div>
+            :
+            null
+          }
+          {stockPayment ?
+
+            <div>Stock Loan Payment  ${stockPayment}</div>
+            :
+            null
+          }
+          {boatPayment ?
+
+            <div> Boat Loan Payment  ${boatPayment}</div>
+            :
+            null
+          }
+          {recreationalPayment ?
+
+            <div>Recreational Loan Payment  ${recreationalPayment}</div>
+            :
+            null
+          }
+
+          {creditCardPayment ?
+
+            <div>Credit Card Payment  ${creditCardPayment}</div>
+            :
+            null
+          }
+          {studentPayment ?
+
+            <div>Student Loan Payment  ${studentPayment}</div>
+            :
+            null
+          }
+          {medicalPayment ?
+
+            <div>Medical Bills Payment  ${medicalPayment}</div>
+            :
+            null
+          }
+
+          {insurancePayment ?
+
+            <div>Home and Auto Insurance Payment  ${insurancePayment}</div>
+            :
+            null
+          }
+          {utilitiesPayment ?
+
+            <div>Utility Bill Payment  ${utilitiesPayment}</div>
+            :
+            null
+          }
+          {cablePayment ?
+
+            <div>Cable Bill Payment  ${cablePayment}</div>
+            :
+            null
+          }
+          {phonePayment ?
+
+            <div>Phone Bill Payment  ${phonePayment}</div>
+            :
+            null
+          }
+          {entertainmentPayment ?
+
+            <div>Entertainment Expenses ${entertainmentPayment}</div>
+            :
+            null
+          }
+          {foodPayment ?
+
+            <div>Foood Expenses ${foodPayment}</div>
+            :
+            null
+          }
+          {clothingPayment ?
+
+            <div>Clothing Expenses ${clothingPayment}</div>
+            :
+            null
+          }
+          {internetPayment ?
+
+            <div>Internet Bill Payment  ${internetPayment}</div>
+            :
+            null
+          }
         </div>
       </div>
     );
@@ -72,7 +157,7 @@ Expenses.propTypes = {
 };
 
 function mapStateToProps(state) {
-    return state
+  return state
 }
 
 export default connect(mapStateToProps)(Expenses);
